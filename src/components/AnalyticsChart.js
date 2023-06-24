@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from 'react';
+
 import { Chart, CategoryScale, LinearScale, BarController, BarElement } from 'chart.js';
 
 Chart.register(CategoryScale, LinearScale, BarController, BarElement);
 
-function AnalyticsChart({ completedTasks, pomodoroSessions }) {
+function AnalyticsChart({ completedTasks, pomodoroSessions,completeTask }) {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
-
+   
   useEffect(() => {
     if (chartInstanceRef.current) {
       const chartData = chartInstanceRef.current.data.datasets[0].data;
@@ -43,9 +44,18 @@ function AnalyticsChart({ completedTasks, pomodoroSessions }) {
   }, [completedTasks, pomodoroSessions]);
 
   return (
+    <>
+     <div>
+      <h1>Analytics</h1>
+      <div className="button-container"> {/* Apply the CSS class */}
+        <button className="button" onClick={completeTask}>Complete Task</button> {/* Apply the CSS classes */}
+      </div>
+     
+    </div>
     <div className="chart-container">
       <canvas ref={chartRef} />
     </div>
+    </>
   );
 }
 

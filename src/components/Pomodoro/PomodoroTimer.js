@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PomodoroTimer.css';
+import Extra from '../Extra';
 
 const PomodoroTimer = () => {
   const [timer, setTimer] = useState(25 * 60);
@@ -42,6 +43,7 @@ const PomodoroTimer = () => {
   };
 
   return (
+    <>
     <div className="pomodoro-timer">
       <h1>Pomodoro Timer</h1>
       <div className="timer">{formatTime(timer)}</div>
@@ -51,6 +53,11 @@ const PomodoroTimer = () => {
         <button onClick={resetTimer}>Reset</button>
       </div>
     </div>
+    <Extra></Extra>
+    
+    
+    </>
+    
   );
 };
 
