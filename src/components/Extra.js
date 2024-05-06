@@ -4,8 +4,6 @@ import CustomForm from './CustomForm'
 import TaskList from './TaskList'
 import useLocalStorage from "../hooks/useLocalStorage"
 
-
-
 const Extra = () => {
    const [tasks, setTasks] = useLocalStorage('react-todo.tasks', []);
   const [previousFocusEl, setPreviousFocusEl] = useState(null);
@@ -13,7 +11,7 @@ const Extra = () => {
   const [isEditing, setIsEditing] = useState(false);
 
   const addTask = (task) => {
-    setTasks(prevState => [...prevState, task])
+    setTasks(prevState => [...prevState, task]) //When you call this addTask function and pass a task object as an argument, it will take the existing tasks array from the state (prevState), create a new array that includes all the previous tasks (using the spread operator), and then add the new task to the end of this new array. Finally, it updates the state with the updated array, effectively adding the new task to the list of tasks.
   }
 
   const deleteTask = (id) => {
@@ -47,25 +45,14 @@ const Extra = () => {
     setIsEditing(true);
     setPreviousFocusEl(document.activeElement);
   }
- const [completedTasks, setCompletedTasks] = useState(0);
-  const [pomodoroSessions, setPomodoroSessions] = useState(0);
 
-  // Function to handle task completion
- 
-  const completeTask = () => {
-    setCompletedTasks(completedTasks + 1);
-    setPomodoroSessions(pomodoroSessions + 1);
-  };
 
-//  const handleClick = () => {
-//     completeTask(); // Call the completeTask function when needed
-//   };
 
   return (
     <>
      <div className='container'>
        <header>
-        <h1>My Task</h1>
+        <h1>Today's Task to Complete</h1>
        </header>
         {
         isEditing && (
@@ -76,8 +63,8 @@ const Extra = () => {
           />
         )
       }
-      <CustomForm addTask={addTask}/>
-      {tasks && (
+      <CustomForm addTask={addTask}/>  
+      {tasks && (                    // customform now have access to addtask
         <TaskList
           tasks={tasks}
           deleteTask={deleteTask}
@@ -86,13 +73,7 @@ const Extra = () => {
         />
       )}
       </div> 
-      <div>
-        
-        <button onClick={completeTask}>Complete Task</button>
-        <p>Completed Tasks: {completedTasks}</p>
-        <p>Pomodoro Sessions: {pomodoroSessions}</p>
-      </div>
-       
+     
     </>
   )
 }

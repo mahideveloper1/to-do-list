@@ -1,8 +1,6 @@
 import { useState } from 'react';
-
 // styles
 import styles from './TaskItem.module.css';
-
 // Library imports
 import { CheckIcon  } from '@heroicons/react/24/outline';
 import { PencilSquareIcon  } from '@heroicons/react/24/outline';
@@ -15,11 +13,11 @@ const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
     setIsChecked(!isChecked);
     toggleTask(task.id);
   }
-
+//{styles.task} when classname does not contain any special character like - _etc
   return (
     <li className={styles.task}>
-      <div className={styles["task-group"]}>
-        <input
+      <div className={styles["task-group"]}>  
+        <input                                 
           type="checkbox"
           className={styles.checkbox}
           checked={isChecked}
@@ -28,12 +26,12 @@ const TaskItem = ({ task, deleteTask, toggleTask, enterEditMode }) => {
           id={task.id}
         />
         <label
-          htmlFor={task.id}
+          htmlFor={task.id}  // it means label should match task id
           className={styles.label}
         >
           {task.name}
           <p className={styles.checkmark}>
-            <CheckIcon strokeWidth={2} width={24} height={24}/>
+            <CheckIcon strokeWidth={4} width={24} height={24} color='black'/>
           </p>
         </label>
       </div>
